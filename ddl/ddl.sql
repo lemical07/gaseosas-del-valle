@@ -39,3 +39,11 @@ CREATE TABLE category(
     FOREIGN KEY (id_product) REFERENCES product(id_product)
 );
 
+CREATE TABLE stock(
+    id_sotck INT PRIMARY KEY AUTO_INCREMENT,
+    id_product INT,
+    minium_stock_level VARCHAR(5),
+    current_stock VARCHAR(5),
+
+    FOREIGN KEY (id_product) REFERENCES product(id_product)
+);
