@@ -172,6 +172,17 @@ VALUES
     ('Sucursal Escuintla', '1a Calle 4-12, Zona 1, Escuintla', '3000'),
     ('Sucursal Cobán', '2da Calle 3-45, Zona 2, Cobán', '1500');
 
+INSERT INTO in_charge (id_loc_office, name_in_charge) VALUES
+(1, 'Carlos Eduardo Gómez'),
+(1, 'María Fernanda López'),
+(2, 'José Luis Rodríguez'),
+(2, 'Ana Lucía Martínez'),
+(3, 'Juan Carlos Morales'),
+(3, 'Claudia Patricia Pérez'),
+(4, 'Mario Roberto Estrada'),
+(4, 'Sofia Isabel Hernández'),
+(1, 'Diego Alejandro Castillo'),
+(2, 'Andrea Beatríz Ramos');
     INSERT INTO stock (id_product, id_loc_office, minium_stock_level, current_stock) VALUES
 (1, 1, '50', '250'),
 (1, 2, '20', '80'),
