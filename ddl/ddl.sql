@@ -65,3 +65,17 @@ CREATE TABLE in_charge(
 
     FOREIGN KEY (id_loc_office) REFERENCES location_office(id_loc_office)
 );
+
+CREATE TABLE orders(
+    order_id INT PRIMARY KEY AUTO_INCREMENT,
+    id_client INT,
+    id_loc_office INT,
+    id_order_details INT,
+    order_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    total_including_iva DECIMAL(10, 2) NOT NULL,
+    total_excluding_iva DECIMAL(10, 2) NOT NULL,
+
+    FOREIGN KEY (id_client) REFERENCES client(id_client),
+    FOREIGN KEY (id_loc_office) REFERENCES location_office(id_loc_office),
+    FOREIGN KEY (id_order_details) REFERENCES order_details (id_order_details)
+);
