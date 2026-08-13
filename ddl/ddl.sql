@@ -58,3 +58,10 @@ CREATE TABLE location_office(
     FOREIGN KEY (id_sotck) REFERENCES stock (id_sotck)
 );
 
+CREATE TABLE in_charge(
+    id_in_charge INT PRIMARY KEY AUTO_INCREMENT,
+    id_loc_office INT,
+    name_in_charge VARCHAR(50),
+
+    FOREIGN KEY (id_loc_office) REFERENCES location_office(id_loc_office)
+);
