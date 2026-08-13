@@ -13,12 +13,6 @@ CREATE TABLE client(
     email VARCHAR(100) NOT NULL UNIQUE
 );
 
-CREATE TABLE order_details(
-    id_order_details INT PRIMARY KEY AUTO_INCREMENT,
-    quantity VARCHAR(5) NOT NULL,
-    unit_price DECIMAL(10,2) NOT NULL,
-    subtotal DECIMAL(10,2) GENERATED ALWAYS AS (quantity * unit_price) STORED
-);
 CREATE TABLE category(
     id_category INT PRIMARY KEY AUTO_INCREMENT,
     category_name VARCHAR(25) NOT NULL
@@ -26,14 +20,21 @@ CREATE TABLE category(
 
 CREATE TABLE product(
     id_product INT PRIMARY KEY AUTO_INCREMENT,
-    id_order_details INT,
     id_category INT,
     name VARCHAR(60) NOT NULL,
     volume_ml VARCHAR(10) NOT NULL,
     price DECIMAL(10, 2),
 
-    FOREIGN KEY (id_order_details) REFERENCES order_details (id_order_details),
     FOREIGN KEY (id_category) REFERENCES category (id_category)
+);
+CREATE TABLE order_details(
+    id_order_details INT PRIMARY KEY AUTO_INCREMENT,
+    id_product INT,
+    quantity VARCHAR(5) NOT NULL,
+    unit_price DECIMAL(10,2) NOT NULL,
+    subtotal DECIMAL(10,2) GENERATED ALWAYS AS (quantity * unit_price) STORED,
+
+    FOREIGN KEY (id_product) REFERENCES product(id_product)
 );
 
 CREATE TABLE stock(
