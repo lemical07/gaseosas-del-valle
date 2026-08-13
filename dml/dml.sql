@@ -103,3 +103,14 @@ VALUES
     ('1', 13.00),
     ('10', 6.00),
     ('2', 5.50);
+
+INSERT INTO category (category_name) 
+VALUES
+    ('Gaseosas'),
+    ('Jugos y Néctares'),
+    ('Aguas Purificadas'),
+    ('Bebidas Energizantes'),
+    ('Isotónicas'),
+    ('Tés Fríos'),
+    ('Bebidas Lácteas'),
+    ('Bebidas Tradicionales');
