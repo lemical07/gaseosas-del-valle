@@ -22,8 +22,8 @@ CREATE TABLE product(
     id_product INT PRIMARY KEY AUTO_INCREMENT,
     id_category INT NOT NULL,
     name VARCHAR(60) NOT NULL,
-    volume_ml VARCHAR(10) NOT NULL,
-    price DECIMAL(10, 2),
+    volume_ml DECIMAL(6,2) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL CHECK (price >= 0),
 
     FOREIGN KEY (id_category) REFERENCES category (id_category)
 );
@@ -47,7 +47,7 @@ CREATE TABLE stock(
     id_stock INT PRIMARY KEY AUTO_INCREMENT,
     id_product INT NOT NULL,
     id_loc_office INT NOT NULL,
-    minimum_stock_level INT NOT NULL,
+    minimum_stock_level INT NOT NULL CHECK (minimum_stock_level >= 0),
     current_stock INT NOT NULL,
 
     FOREIGN KEY (id_product) REFERENCES product (id_product),
@@ -59,8 +59,6 @@ CREATE TABLE orders(
     id_client INT NOT NULL,
     id_loc_office INT NOT NULL,
     order_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    total_excluding_iva DECIMAL(10, 2) NOT NULL,
-    total_including_iva DECIMAL(10, 2) GENERATED ALWAYS AS (total_excluding_iva * 1.19) STORED,
 
     FOREIGN KEY (id_client) REFERENCES client(id_client),
     FOREIGN KEY (id_loc_office) REFERENCES location_office(id_loc_office)
@@ -71,7 +69,7 @@ CREATE TABLE order_details(
     id_product INT NOT NULL,
     id_order INT NOT NULL,
     quantity INT NOT NULL,
-    unit_price DECIMAL(10,2) NOT NULL,
+    unit_price DECIMAL(10,2) NOT NULL CHECK (unit_price >= 0),
     subtotal DECIMAL(10,2) GENERATED ALWAYS AS (quantity * unit_price) STORED,
 
     FOREIGN KEY (id_product) REFERENCES product(id_product),
