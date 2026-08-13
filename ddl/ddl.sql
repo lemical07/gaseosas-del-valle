@@ -19,3 +19,13 @@ CREATE TABLE order_details(
     unit_price DECIMAL(10,2) NOT NULL,
     subtotal DECIMAL(10,2)
 );
+
+CREATE TABLE product(
+    id_product INT PRIMARY KEY AUTO_INCREMENT,
+    id_order_details INT,
+    name VARCHAR(60) NOT NULL,
+    volume_ml VARCHAR(10) NOT NULL,
+    price DECIMAL(10, 2),
+
+    FOREIGN KEY (id_order_details) REFERENCES order_details (id_order_details)
+);
