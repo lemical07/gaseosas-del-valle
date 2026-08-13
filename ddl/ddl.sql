@@ -38,22 +38,21 @@ CREATE TABLE order_details(
 );
 
 CREATE TABLE stock(
-    id_sotck INT PRIMARY KEY AUTO_INCREMENT,
+    id_stock INT PRIMARY KEY AUTO_INCREMENT,
     id_product INT,
+    id_loc_office INT,
     minium_stock_level VARCHAR(5),
     current_stock VARCHAR(5),
 
-    FOREIGN KEY (id_product) REFERENCES product(id_product)
+    FOREIGN KEY (id_product) REFERENCES product(id_product),
+    FOREIGN KEY (id_loc_office) REFERENCES location_office(id_loc_office)
 );
 
 CREATE TABLE location_office(
     id_loc_office INT PRIMARY KEY AUTO_INCREMENT,
-    id_sotck INT,
     office_name VARCHAR(50) NOT NULL UNIQUE,
     address VARCHAR(150) NOT NULL,
     storage_capacity VARCHAR(5),
-
-    FOREIGN KEY (id_sotck) REFERENCES stock (id_sotck)
 );
 
 CREATE TABLE in_charge(
