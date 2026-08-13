@@ -75,3 +75,13 @@ CREATE TABLE order_details(
     FOREIGN KEY (id_product) REFERENCES product(id_product),
     FOREIGN KEY (id_order) REFERENCES orders(id_order)
 );
+
+CREATE TABLE price_audit(
+    id_audit INT PRIMARY KEY AUTO_INCREMENT,
+    id_product INT NOT NULL,
+    change_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    old_price DECIMAL(10,2) NOT NULL,
+    new_price DECIMAL(10,2) NOT NULL,
+
+    FOREIGN KEY (id_product) REFERENCES product(id_product)
+);
