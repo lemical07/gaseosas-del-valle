@@ -17,7 +17,7 @@ CREATE TABLE order_details(
     id_order_details INT PRIMARY KEY AUTO_INCREMENT,
     quantity VARCHAR(5) NOT NULL,
     unit_price DECIMAL(10,2) NOT NULL,
-    subtotal DECIMAL(10,2)
+    subtotal DECIMAL(10,2) GENERATED ALWAYS AS (quantity * unit_price) STORED
 );
 
 CREATE TABLE product(
