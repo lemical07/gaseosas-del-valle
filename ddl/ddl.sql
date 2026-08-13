@@ -28,21 +28,20 @@ CREATE TABLE product(
     FOREIGN KEY (id_category) REFERENCES category (id_category)
 );
 
-CREATE TABLE in_charge(
-    id_in_charge INT PRIMARY KEY AUTO_INCREMENT,
-    name_in_charge VARCHAR(50),
-);
-
 CREATE TABLE location_office(
     id_loc_office INT PRIMARY KEY AUTO_INCREMENT,
-    id_in_charge INT,
     office_name VARCHAR(50) NOT NULL UNIQUE,
     address VARCHAR(150) NOT NULL,
-    storage_capacity VARCHAR(5),
-
-    FOREIGN KEY (id_in_charge) REFERENCES in_charge(id_in_charge)
+    storage_capacity VARCHAR(5)
 );
 
+CREATE TABLE in_charge(
+    id_in_charge INT PRIMARY KEY AUTO_INCREMENT,
+    id_loc_office INT,
+    name_in_charge VARCHAR(50),
+
+    FOREIGN KEY (id_loc_office) REFERENCES location_office(id_loc_office)
+);
 
 CREATE TABLE stock(
     id_stock INT PRIMARY KEY AUTO_INCREMENT,
