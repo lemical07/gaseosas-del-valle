@@ -1,3 +1,5 @@
+USE gaseosas_del_valle;
+
 INSERT INTO client (first_name, last_name, ident_doc, address, phone_number, email) 
 VALUES
     ('Carlos', 'García', '1984521090101', '6a Avenida 12-38 Zona 1, Ciudad de Guatemala', '55123401', 'carlos.garcia@gmail.com'),
