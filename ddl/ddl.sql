@@ -47,3 +47,14 @@ CREATE TABLE stock(
 
     FOREIGN KEY (id_product) REFERENCES product(id_product)
 );
+
+CREATE TABLE location_office(
+    id_loc_office INT PRIMARY KEY AUTO_INCREMENT,
+    id_sotck INT,
+    office_name VARCHAR(50) NOT NULL UNIQUE,
+    address VARCHAR(150) NOT NULL,
+    storage_capacity VARCHAR(5),
+
+    FOREIGN KEY (id_sotck) REFERENCES stock (id_sotck)
+);
+
