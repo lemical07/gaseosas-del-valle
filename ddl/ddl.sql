@@ -29,3 +29,13 @@ CREATE TABLE product(
 
     FOREIGN KEY (id_order_details) REFERENCES order_details (id_order_details)
 );
+
+
+CREATE TABLE category(
+    id_category INT PRIMARY KEY AUTO_INCREMENT,
+    id_product INT,
+    category_name VARCHAR(25) NOT NULL,
+
+    FOREIGN KEY (id_product) REFERENCES product(id_product)
+);
+
