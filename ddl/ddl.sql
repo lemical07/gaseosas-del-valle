@@ -59,8 +59,8 @@ CREATE TABLE orders(
     id_client INT,
     id_loc_office INT,
     order_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    total_including_iva DECIMAL(10, 2) NOT NULL,
     total_excluding_iva DECIMAL(10, 2) NOT NULL,
+    total_including_iva DECIMAL(10, 2) GENERATED ALWAYS AS (total_excluding_iva * 1.19) STORED,
 
     FOREIGN KEY (id_client) REFERENCES client(id_client),
     FOREIGN KEY (id_loc_office) REFERENCES location_office(id_loc_office)
