@@ -165,9 +165,9 @@ VALUES
     (8, 'Del Frutal Rosa de Jamaica', '1L', 10.00),
     (8, 'Kerns Tamarindo', '1L', 10.50);
 
-INSERT INTO location_office (id_sotck, office_name, address, storage_capacity) 
+INSERT INTO location_office (office_name, address, storage_capacity) 
 VALUES
-    (NULL, 'Sede Central', '6ta Avenida 12-38, Zona 1, Ciudad de Guatemala', '5000'),
-    (NULL, 'Sucursal Quetzaltenango', '4ta Calle 15-22, Zona 3, Quetzaltenango', '2500'),
-    (NULL, 'Sucursal Escuintla', '1a Calle 4-12, Zona 1, Escuintla', '3000'),
-    (NULL, 'Sucursal Cobán', '2da Calle 3-45, Zona 2, Cobán', '1500');
+    ('Sede Central', '6ta Avenida 12-38, Zona 1, Ciudad de Guatemala', '5000'),
+    ('Sucursal Quetzaltenango', '4ta Calle 15-22, Zona 3, Quetzaltenango', '2500'),
+    ('Sucursal Escuintla', '1a Calle 4-12, Zona 1, Escuintla', '3000'),
+    ('Sucursal Cobán', '2da Calle 3-45, Zona 2, Cobán', '1500');
