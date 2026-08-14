@@ -8,3 +8,9 @@ FROM stock s
     JOIN location_office lo 
         ON s.id_loc_office = lo.id_loc_office
 WHERE s.current_stock < s.minimum_stock_level;
+
+
+SELECT id_order, id_client, id_loc_office, order_date, status
+FROM orders
+WHERE order_date 
+    BETWEEN '2026-01-01' AND '2026-02-28';
