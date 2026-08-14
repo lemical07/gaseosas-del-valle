@@ -412,3 +412,20 @@ VALUES
     (59, '2026-02-10 08:45:00', 2.75, 3.00),
     (70, '2026-02-20 11:15:00', 9.50, 10.00),
     (90, '2026-03-01 16:20:00', 5.00, 5.50); 
+
+-- -----------------------------------------------
+UPDATE orders SET status = 'completed';
+
+UPDATE orders
+SET status = 'cancelled'
+WHERE id_order IN (
+    SELECT id_order FROM (
+        SELECT id_order FROM orders
+        ORDER BY RAND()
+        LIMIT 5
+    ) AS random_orders
+);
+
+SELECT status, COUNT(*) AS total
+    FROM orders
+    GROUP BY status;
