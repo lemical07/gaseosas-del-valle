@@ -41,3 +41,17 @@ FROM product p
         ON p.id_category = c.id_category
 WHERE c.category_name 
     IN ('Gaseosas', 'Bebidas Energizantes', 'Isotónicas');
+
+SELECT c.id_client, CONCAT(c.first_name, ' ', c.last_name) AS client_name,
+    COUNT(o.id_order) AS total_orders
+FROM client c
+JOIN orders o ON o.id_client = c.id_client
+GROUP BY c.id_client, c.first_name, c.last_name
+HAVING COUNT(o.id_order) = (
+    SELECT MAX(order_count) 
+    FROM (
+        SELECT COUNT(id_order) AS order_count
+        FROM orders
+        GROUP BY id_client
+    ) AS counts
+);
