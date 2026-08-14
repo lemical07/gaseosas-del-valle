@@ -22,3 +22,11 @@ FROM order_details od
         ON od.id_product = p.id_product
 GROUP BY p.id_product, p.name
 ORDER BY total_units_sold DESC;
+
+SELECT c.id_client, CONCAT(c.first_name, ' ', c.last_name) AS client_name,
+    COUNT(o.id_order) AS total_orders
+FROM client c
+    JOIN orders o 
+        ON o.id_client = c.id_client
+GROUP BY c.id_client, c.first_name, c.last_name
+ORDER BY total_orders DESC;
