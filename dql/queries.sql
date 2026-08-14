@@ -30,3 +30,7 @@ FROM client c
         ON o.id_client = c.id_client
 GROUP BY c.id_client, c.first_name, c.last_name
 ORDER BY total_orders DESC;
+
+SELECT id_client, first_name, last_name, email
+FROM client
+WHERE first_name LIKE '%Mar%' OR last_name LIKE '%Mar%';
