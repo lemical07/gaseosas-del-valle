@@ -16,6 +16,18 @@ BEGIN
     WHERE id_product = NEW.id_product
         AND id_loc_office = v_id_loc_office;
 END//
+
+CREATE TRIGGER tr_audit_price_change
+AFTER UPDATE ON product
+FOR EACH ROW
+BEGIN
+    IF OLD.price <> NEW.price THEN
+        INSERT 
+            INTO price_audit (id_product, change_date, old_price, new_price)
+        VALUES 
+            (OLD.id_product, NOW(), OLD.price, NEW.price);
+    END IF;
+END//
 DELIMITER ;
 -- ---------------------------------------------------------
 -- tr_update_stock test
@@ -28,5 +40,20 @@ VALUES
 SELECT * FROM stock WHERE id_product = 1 AND id_loc_office = 1;
 
 -- ---------------------------------------------------------
--- tr_update_stock test
+-- tr_audit_price_change test
 -- ---------------------------------------------------------
+-- <--Caso1-->
+
+SELECT * FROM price_audit WHERE id_product = 1;
+SELECT price FROM product WHERE id_product = 1;
+
+UPDATE product SET price = price + 1.00 WHERE id_product = 1;
+
+SELECT * FROM price_audit WHERE id_product = 1;
+SELECT price FROM product WHERE id_product = 1;
+
+
+-- <--Caso2-->
+UPDATE product SET name = name WHERE id_product = 1;
+
+SELECT * FROM price_audit WHERE id_product = 1;
