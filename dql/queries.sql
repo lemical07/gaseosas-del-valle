@@ -34,3 +34,10 @@ ORDER BY total_orders DESC;
 SELECT id_client, first_name, last_name, email
 FROM client
 WHERE first_name LIKE '%Mar%' OR last_name LIKE '%Mar%';
+
+SELECT p.id_product, p.name AS product_name, c.category_name, p.price
+FROM product p
+    JOIN category c 
+        ON p.id_category = c.id_category
+WHERE c.category_name 
+    IN ('Gaseosas', 'Bebidas Energizantes', 'Isotónicas');
