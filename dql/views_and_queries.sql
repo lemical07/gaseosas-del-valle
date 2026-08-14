@@ -10,6 +10,24 @@ FROM location_office lo
 GROUP BY lo.id_loc_office, lo.office_name;
 SELECT * FROM v_order_summary_by_office;
 
+CREATE VIEW v_products_below_min_stock AS
+SELECT p.id_product, p.name AS product_name,
+    lo.office_name,
+    s.current_stock, s.minimum_stock_level
+FROM stock s
+    JOIN product p 
+        ON s.id_product = p.id_product
+    JOIN location_office lo 
+        ON s.id_loc_office = lo.id_loc_office
+WHERE s.current_stock <= s.minimum_stock_level;
+
+SELECT * FROM v_products_below_min_stock;
+-- ------before test
+UPDATE stock SET current_stock = 10 WHERE id_product = 1 AND id_loc_office = 1;
+SELECT * FROM v_products_below_min_stock;
+-- ----after test
+UPDATE stock SET current_stock = 250 WHERE id_product = 1 AND id_loc_office = 1;
+SELECT COUNT(*) FROM stock WHERE current_stock <= minimum_stock_level;
 
 CREATE VIEW v_order_summary AS
 SELECT
