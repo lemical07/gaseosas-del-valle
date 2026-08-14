@@ -29,6 +29,18 @@ SELECT * FROM v_products_below_min_stock;
 UPDATE stock SET current_stock = 250 WHERE id_product = 1 AND id_loc_office = 1;
 SELECT COUNT(*) FROM stock WHERE current_stock <= minimum_stock_level;
 
+
+CREATE VIEW v_active_clients AS
+SELECT DISTINCT c.id_client, c.first_name, c.last_name, c.email
+FROM client c
+    JOIN orders o 
+        ON o.id_client = c.id_client;
+
+SELECT * FROM v_active_clients;
+
+SELECT c.id_client, c.first_name FROM client c
+LEFT JOIN orders o ON o.id_client = c.id_client
+WHERE o.id_order IS NULL;
 CREATE VIEW v_order_summary AS
 SELECT
     o.id_order,
