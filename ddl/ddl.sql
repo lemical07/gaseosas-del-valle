@@ -85,3 +85,7 @@ CREATE TABLE price_audit(
 
     FOREIGN KEY (id_product) REFERENCES product(id_product)
 );
+
+DESCRIBE orders;
+ALTER TABLE orders
+ADD COLUMN status ENUM('pending', 'completed', 'cancelled') NOT NULL DEFAULT 'pending';
