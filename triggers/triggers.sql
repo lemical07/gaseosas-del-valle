@@ -82,6 +82,9 @@ UPDATE product SET name = name WHERE id_product = 1;
 
 SELECT * FROM price_audit WHERE id_product = 1;
 
+-- ---------------------------------------------------------
+-- tr_validate_stock_before_sale test
+-- ---------------------------------------------------------
 
 SELECT * FROM stock WHERE id_product = 1 AND id_loc_office = 1;
 INSERT INTO order_details (id_product, id_order, quantity, unit_price)
