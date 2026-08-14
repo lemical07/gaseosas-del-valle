@@ -56,7 +56,6 @@ HAVING COUNT(o.id_order) = (
     ) AS counts
 );
 
--- Query 8: Orders and totals grouped by office
 SELECT lo.id_loc_office, lo.office_name,
     COUNT(o.id_order) AS total_orders,
     SUM(fn_calculate_total_with_iva(o.id_order)) AS total_sales
