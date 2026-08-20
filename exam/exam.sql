@@ -35,12 +35,17 @@ SELECT
 
 SELECT * FROM vista_clientes_activos;
 
-
-
-
-
-
-
+SELECT 
+    CONCAT(c.first_name, ' ', c.last_name) AS nombre_cliente,
+    COUNT(o.id_order) AS cantidad_pedidos,
+    SUM(fn_calculate_total_with_iva(o.id_order)) AS total_comprado
+    
+	FROM client c
+		JOIN orders o ON c.id_client = o.id_client
+		WHERE YEAR(o.order_date) = YEAR(CURDATE())
+			GROUP BY c.id_client, c.first_name, c.last_name
+			ORDER BY total_comprado DESC
+	LIMIT 5;
 
 
 
