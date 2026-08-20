@@ -1,4 +1,4 @@
-USE  gaseosas_del_valle;
+USE gaseosas_del_valle;
 
 DELIMITER //
 
@@ -11,13 +11,29 @@ BEGIN
 
     SELECT COALESCE(SUM(total), 0) INTO total_pedidos
     FROM orders
-    WHERE id_cliente = p_id_cliente
-        AND fecha_pedido BETWEEN p_fecha_inicio AND p_fecha_final;
+    WHERE id_cliente = p_id_cliente AND fecha_pedido BETWEEN p_fecha_inicio AND p_fecha_final;
 
     RETURN total_pedidos;
 END //
 
 DELIMITER ;
+
+CREATE VIEW vista_clientes_activos AS
+SELECT 
+    c.id_client AS id_cliente,
+    
+    CONCAT(c.first_name, ' ', c.last_name) AS nombre_cliente,
+    COUNT(o.id_order) AS total_pedidos,
+    SUM(fn_calculate_total_with_iva(o.id_order)) AS valor_total_comprado
+	FROM client c
+		JOIN 
+			orders o 
+			ON c.id_client = o.id_client
+			WHERE o.order_date >= DATE_SUB(CURDATE(), INTERVAL 90 DAY)
+	GROUP BY 
+		c.id_client, c.first_name, c.last_name;
+
+SELECT * FROM vista_clientes_activos;
 
 
 
